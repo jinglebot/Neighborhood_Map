@@ -8,13 +8,19 @@ function initMap () {
 		zoom: 8
 	});
 	
+	var locations = [
+		{title: 'First', location: {lat: 37.4275, lng: 122.1697}}
+	// , {title: 'Second'},
+	// {title: 'Third'}
+	];
+
 	var marker = new google.maps.Marker({
-		position: {lat: -34.397, lng: 150.644},
+		position: locations,
 		map: map
 	});
 
 	var infoWindow = new google.maps.InfoWindow({
-		content: "My first infoWindow"
+		content: "My first infoWindow : " + title
 	});
 
 	marker.addListener('click', function(){
