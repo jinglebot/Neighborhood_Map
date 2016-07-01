@@ -11,8 +11,8 @@ function initMap () {
 	
 	var locations = [
 		{title: 'My First infoWindow', location: {lat: -34.397, lng: 150.644}}, 
-		{title: 'Second', location: {lat: -33.890, lng: 151.274}}
-	// {title: 'Third'}
+		{title: 'Opera House', location: {lat: 33.8568, lng: 151.2153}},
+		{title: 'Bondi Beach', location: {lat: 33.8915, lng: 151.2767}}
 	];
 	
 	var largeInfowindow = new google.maps.InfoWindow();
