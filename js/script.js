@@ -10,7 +10,7 @@ function initMap () {
 	});
 	
 	var locations = [
-		{title: 'My First infoWindow', location: {lat: -34.397, lng: 150.644}}, 
+		{title: 'Great Barrier Reef', location: {lat: -18.15629, lng: 147.485962}}, 
 		{title: 'Opera House', location: {lat: 33.8568, lng: 151.2153}},
 		{title: 'Bondi Beach', location: {lat: 33.8915, lng: 151.2767}}
 	];
