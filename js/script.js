@@ -7,5 +7,10 @@ function initMap () {
 		scrollwheel: false,
 		zoom: 8
 	});
+	
+	var marker = new google.maps.Marker({
+		position = {lat: 37.4275, lng: 122.1697};
+		map = map;
+	});
 
 };
