@@ -9,8 +9,8 @@ function initMap () {
 	});
 	
 	var marker = new google.maps.Marker({
-		position = {lat: -34.397, lng: 150.644},
-		map = map
+		position: {lat: -34.397, lng: 150.644},
+		map: map
 	});
 
 };
