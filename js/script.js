@@ -52,7 +52,7 @@ function initMap () {
 			infowindow.open(map, marker);
 			infowindow.addListener('closeclick', function(){
 				infowindow.setMarker(null);
-			}
+			});
 		}
 	}
 
