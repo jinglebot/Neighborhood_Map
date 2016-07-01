@@ -1,4 +1,5 @@
 var map;
+var markers = [];
 function initMap () {
 
 	// Create a map object and specify the DOM element for display.
@@ -9,23 +10,50 @@ function initMap () {
 	});
 	
 	var locations = [
-		{title: 'My First infoWindow', location: {lat: -34.397, lng: 150.644}}
-	// , {title: 'Second'},
+		{title: 'My First infoWindow', location: {lat: -34.397, lng: 150.644}}, 
+		{title: 'Second', location: {lat: -33.890, lng: 151.274}}
 	// {title: 'Third'}
 	];
+	
+	var largeInfowindow = new google.maps.InfoWindow();
+	var bounds = new google.maps.LatLngBounds();
 
-	var marker = new google.maps.Marker({
-		position: locations.location,
-		map: map,
-		title: locations.title
-	});
+	(for var i = 0; i < locations.length; i++) {
+		var position = locations[i].location;
+		var title = locations[i].title;
+		var marker = new google.maps.Marker({
+			position: position,
+			map: map,
+			title: title,
+			animation: google.maps.Animation.DROP,
+			id: i
+		});
 
-	var infoWindow = new google.maps.InfoWindow({
-		content: locations.title
-	});
+		markers.push(marker);
+		bounds.extend(marker.position);
+		
+		// var infoWindow = new google.maps.InfoWindow({
+		// 	content: title
+		// });
 
-	marker.addListener('click', function(){
-		infoWindow.open(map, marker);
-	})
+		marker.addListener('click', function(){
+			populateInfoWindow(this, largeInfowindow);
+			// infoWindow.open(map, marker);
+		});
+	
+	}
+	
+	map.fitBounds(bounds);
+	
+	function populateInfoWindow(marker, infowindow) {
+		if (infowindow.marker != marker) {
+			infowindow.marker = marker;
+			infowiwndow.setContent('<div>' + marker.title + '</div>');
+			infowindow.open(map, marker);
+			infowindow.addListener('closeclick', function(){
+				infowindow.setMarker(null);
+			}
+		}
+	}
 
 };
