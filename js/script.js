@@ -18,7 +18,7 @@ function initMap () {
 	var largeInfowindow = new google.maps.InfoWindow();
 	var bounds = new google.maps.LatLngBounds();
 
-	(for var i = 0; i < locations.length; i++) {
+	for (var i = 0; i < locations.length; i++) {
 		var position = locations[i].location;
 		var title = locations[i].title;
 		var marker = new google.maps.Marker({
