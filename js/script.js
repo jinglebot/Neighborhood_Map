@@ -4,22 +4,22 @@ function initMap () {
 
 	// Create a map object and specify the DOM element for display.
 	var map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: 37.4275, lng: 122.1697}, // Stanford University
+		center: {street: '427 N. Camden Drive, Suite F', city: 'Beverly Hills, CA 90210'},
 		scrollwheel: false,
 		zoom: 12
 	});
-	
+
 	var locations = [
-		{title: 'Great Barrier Reef', location: {lat: -18.15629, lng: 147.485962}}, 
-		{title: 'Opera House', location: {lat: -33.8568, lng: 151.2153}},
-		{title: 'Bondi Beach', location: {lat: -33.8915, lng: 151.2767}}
+		{title: 'Los Angeles Gold & Silver', location: {street: '427 N. Camden Drive, Suite F', city: 'Beverly Hills, CA 90210'}},
+		{title: 'Huntington Rare Coins & Precious Metals', location: {street: '31 W Del Mar Blvd.', city: 'Pasadena, CA 91105'}},
+		{title: '310antiques', location: {street: '3159 Donald Douglas Loop South #305', city: 'Santa Monica, CA 90405'}}
 	];
-	
+
 	var largeInfowindow = new google.maps.InfoWindow();
-	var bounds = new google.maps.LatLngBounds();
+	var bounds = new google.maps.LatLngBoundsLiteral();
 
 	for (var i = 0; i < locations.length; i++) {
-		var position = locations[i].location;
+		var position = locations[i].location.street + ' ' + locations[i].location.city;
 		var title = locations[i].title;
 		var marker = new google.maps.Marker({
 			position: position,
@@ -31,7 +31,7 @@ function initMap () {
 
 		markers.push(marker);
 		bounds.extend(marker.position);
-		
+
 		// var infoWindow = new google.maps.InfoWindow({
 		// 	content: title
 		// });
@@ -40,11 +40,11 @@ function initMap () {
 			populateInfoWindow(this, largeInfowindow);
 			// infoWindow.open(map, marker);
 		});
-	
+
 	}
-	
+
 	map.fitBounds(bounds);
-	
+
 	function populateInfoWindow(marker, infowindow) {
 		if (infowindow.marker != marker) {
 			infowindow.marker = marker;
@@ -56,23 +56,13 @@ function initMap () {
 		}
 	}
 
-	var locations = [
-	{title: 'First', location: {lat: 37.4275, lng: 122.1697}}
-	// , {title: 'Second'},
-	// {title: 'Third'}
-	];
+	// var marker = new google.maps.Marker({
+	// 	position: locations,
+	// 	map: map
+	// });
 
-	var marker = new google.maps.Marker({
-		position: locations,
-		map: map
-	});
-
-	var infoWindow = new google.maps.InfoWindow({
-		content: "My first infoWindow"
-	});
-
-	marker.addListener('click', function(){
-		infoWindow.open(map, marker);
-	})
+	// marker.addListener('click', function(){
+	// 	infoWindow.open(map, marker);
+	// })
 
 };
