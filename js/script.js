@@ -28,9 +28,12 @@ function initMap () {
 	var bounds = new google.maps.LatLngBounds();
 
 	for (var i = 0; i < locations.length; i++) {
-		var position = locations[i].latlng;
+		// var position = locations[i].latlng;
 		var title = locations[i].title;
-		var latlng = locations[i].latlng;
+		var loc = location[i].location.street + ' ' + location[i].location.city;
+		var lat = loc.geometry.location.lat();
+		var lng = loc.geometry.location.lng();  
+		var position = lat + ', ' + lng;
 		var marker = new google.maps.Marker({
 			position: position,
 			map: map,
