@@ -32,7 +32,7 @@ function initMap () {
 		var title = locations[i].title;
 		var latlng = locations[i].latlng;
 		var marker = new google.maps.Marker({
-			latlng: position,
+			position: position,
 			map: map,
 			title: title,
 			animation: google.maps.Animation.DROP,
@@ -40,7 +40,7 @@ function initMap () {
 		});
 
 		markers.push(marker);
-		bounds.extend(marker.latlng);
+		bounds.extend(marker.position);
 
 		// var infoWindow = new google.maps.InfoWindow({
 		// 	content: title
