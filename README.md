@@ -15,5 +15,5 @@ To do:
 	- [X]	get geocode instead of hardcoded lat/lng values 
 4. implement a list view of locations on the page
 	-	[ ]	download knockout framework
-	-	[X]	separate concerns in mvc style: model, view and viewmodel XXX
-	-	[X]	separate maps and markers, etc XXX
+	-	[X]	separate concerns in mvc style: model, view and viewmodel
+	-	[X]	separate maps and markers, etc
