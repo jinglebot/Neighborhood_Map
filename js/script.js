@@ -34,7 +34,7 @@ function initMap () {
 		var loc = locations[i].location;
 		var lat = loc.geometry.location.lat();
 		var lng = loc.geometry.location.lng();  
-		var position = lat + ', ' + lng;
+		var position = loc.geometry.location;
 		var marker = new google.maps.Marker({
 			position: position,
 			map: map,
