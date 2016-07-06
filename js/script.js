@@ -29,9 +29,9 @@ function initMap () {
 	function createMapMarker(placeData) {
 		var lat = placeData.geometry.location.lat();  // latitude from the place service
 		var lon = placeData.geometry.location.lng();  // longitude from the place service
-		var name = placeData.formatted_address;   // name of the place from the place service
+		// var name = placeData.formatted_address;   // name of the place from the place service
 		var position = placeData.geometry.location;
-		return position;
+		return {'lat: ' + lat + ', ' + 'lng: ' + lng};
 		// var bounds = window.mapBounds;            // current boundaries of the map window
 		// var marker = new google.maps.Marker({
 		// 	map: map,
@@ -68,8 +68,8 @@ function initMap () {
 	for (var i = 0; i < locations.length; i++) {
 		// var position = locations[i].latlng;
 		var title = locations[i].title;
-		// var loc = locations[i].location.street + ' ' + locations[i].location.city;
-		var loc = locations[i].location;
+		var loc = locations[i].location.street + ', ' + locations[i].location.city;
+		// var loc = locations[i].location;
 		// var lat = loc.geometry.location.lat();
 		// var lng = loc.geometry.location.lng();  
 		var position = createMapMarker(loc);
