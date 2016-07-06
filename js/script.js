@@ -26,11 +26,53 @@ function initMap () {
 
 	var largeInfowindow = new google.maps.InfoWindow();
 	var bounds = new google.maps.LatLngBounds();
+	function createMapMarker(placeData) {
+		var lat = placeData.geometry.location.lat();  // latitude from the place service
+		var lon = placeData.geometry.location.lng();  // longitude from the place service
+		// var name = placeData.formatted_address;   // name of the place from the place service
+		var position = placeData.geometry.location;
+		return {'lat: ' + lat + ', ' + 'lng: ' + lng};
+		// var bounds = window.mapBounds;            // current boundaries of the map window
+		// var marker = new google.maps.Marker({
+		// 	map: map,
+		// 	position: placeData.geometry.location,
+		// 	title: name
+		// });
+
+    // infoWindows are the little helper windows that open when you click
+    // or hover over a pin on a map. They usually contain more information
+    // about a location.
+		// var contentString = '<div id="content" class="center-content">'+'<h3><b>'+name+'</b></h3>'+'</div>';
+
+		// var infoWindow = new google.maps.InfoWindow({
+		// 	content: contentString
+		// });
+
+    // hmmmm, I wonder what this is about...
+		// google.maps.event.addListener(marker, 'click', function() {
+	// your code goes here!
+			// infoWindow.open(map, marker);
+		// });
+
+    // this is where the pin actually gets added to the map.
+    // bounds.extend() takes in a map location object
+		// bounds.extend(new google.maps.LatLng(lat, lon));
+    // fit the map to the new marker
+		// map.fitBounds(bounds);
+    // center the map
+		// map.setCenter(bounds.getCenter());
+	}
+
+
 
 	for (var i = 0; i < locations.length; i++) {
-		var position = locations[i].latlng;
+		// var position = locations[i].latlng;
 		var title = locations[i].title;
-		var latlng = locations[i].latlng;
+		var loc = locations[i].location.street + ', ' + locations[i].location.city;
+		// var loc = locations[i].location;
+		// var lat = loc.geometry.location.lat();
+		// var lng = loc.geometry.location.lng();  
+		var position = createMapMarker(loc);
 		var marker = new google.maps.Marker({
 			position: position,
 			map: map,
