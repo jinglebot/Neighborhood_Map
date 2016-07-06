@@ -32,7 +32,7 @@ function initMap () {
 		var title = locations[i].title;
 		var latlng = locations[i].latlng;
 		var marker = new google.maps.Marker({
-			position: position,
+			latlng: position,
 			map: map,
 			title: title,
 			animation: google.maps.Animation.DROP,
