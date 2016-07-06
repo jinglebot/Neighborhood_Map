@@ -29,9 +29,10 @@ function initMap () {
 	function createMapMarker(placeData) {
 		var lat = placeData.geometry.location.lat();  // latitude from the place service
 		var lon = placeData.geometry.location.lng();  // longitude from the place service
+		var latlng = 'lat: ' + lat + ', ' + 'lng: ' + lon;
 		// var name = placeData.formatted_address;   // name of the place from the place service
 		var position = placeData.geometry.location;
-		return {'lat: ' + lat + ', ' + 'lng: ' + lng};
+		return latlng;
 		// var bounds = window.mapBounds;            // current boundaries of the map window
 		// var marker = new google.maps.Marker({
 		// 	map: map,
