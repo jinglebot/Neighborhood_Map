@@ -40,7 +40,7 @@ function initMap () {
 		});
 
 		markers.push(marker);
-		bounds.extend(marker.latlng);
+		bounds.extend(marker.latlng.lat, marker.latlng.lng);
 
 		// var infoWindow = new google.maps.InfoWindow({
 		// 	content: title
