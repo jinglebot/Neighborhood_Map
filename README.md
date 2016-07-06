@@ -1,1 +1,18 @@
-# frontend-nanodegree-neighborhood-map
+# FRONTEND NANODEGREE NEIGHBORHOOD MAP PROJECT
+
+To do:
+1. get Google map to display
+	-	get API key
+	-	use lat/lng values to display the map
+	-	switch from lat/lng to street/city values to indicate locations
+		and see which works with API methods
+2. complete an array of locations to use
+	-	get at least 5 locations with title, address and lat/lng values
+3. put markers for the list of locations on the map
+	-	get markers to show using street/city names(didn't work)
+	-	get markers to show using lat/lng values (included values in the array)
+XX	-	get geocode instead of hardcoded lat/lng values
+4. implement a list view of locations on the page
+	-	download knockout framework
+XX	-	separate concerns in mvc style: model, view and viewmodel
+XX	-	separate maps and markers, etc
