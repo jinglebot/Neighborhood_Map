@@ -30,7 +30,7 @@ function initMap () {
 	for (var i = 0; i < locations.length; i++) {
 		// var position = locations[i].latlng;
 		var title = locations[i].title;
-		var loc = location[i].location.street + ' ' + location[i].location.city;
+		var loc = locations[i].location.street + ' ' + locations[i].location.city;
 		var lat = loc.geometry.location.lat();
 		var lng = loc.geometry.location.lng();  
 		var position = lat + ', ' + lng;
