@@ -1,7 +1,9 @@
 # FRONTEND NANODEGREE NEIGHBORHOOD MAP PROJECT
 
 To do:
+
 A.
+
 1. do layout of location list and display
 
 2. do list, do display
