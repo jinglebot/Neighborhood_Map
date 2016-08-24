@@ -3,8 +3,11 @@
 To do:
 A.
 1. do layout of location list and display
+
 2. do list, do display
+
 3. update to knockout
+
 4. add map
 
 B.
