@@ -2,24 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <meta name="google-site-verification" content="cKaao5LD1b8NVw4t1oNkiD91fAOTXh1giyutpfYySnU" />
     <title>Neighborhood Map</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 <body>
     <div id="greeting" class="greeting" style="text-align:center">
-        <h2>NUMISMATIC Guide of the Los Angeles Area</h2>
+        <h2>NUMISMATIC Guide to LA</h2>
         <h4>or a fancy way of saying</h4>
         <h3>A Coin Collector's Treasure Hunting Map of LA</h3>
     </div>
 
     <hr>
 
-    <div id="map" style="height:400px; width:600px"></div>
+    <div>
+        <div class="col-sm-6" id="list" style="border-style:solid">
+            <button id="filterbutton">Filter</button>
+            <input id="searchbar"></input>
+            <hr>
+            <h3>Store Locations</h3>
+            <ul id="u-list"></ul>
+        </div>
+        <div class="col-sm-6" id="map" style="height:350px; width:100vw; border-style:solid">
+            MAP
+        </div>
+    </div>
 
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/libs/knockout-3.4.0.js"></script>
     <script src="js/script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&callback=initMap" async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&callback=initMap" async defer></script> -->
 </body>
 </html>
