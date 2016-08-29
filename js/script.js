@@ -73,7 +73,7 @@
 			city: 'Pasadena, CA 91105',
 			loc: ['lat: 34.140766', 'lng: -118.15207']
 		}
-
+	];
 
 	var Locate = function(data) {
 			this.title = data.title;
