@@ -17,14 +17,25 @@
 
     <hr>
 
+    <!-- data-bind= "with: currentLocation" - will save input in searchBar
+        $parent.registerClick
+        data-bind="textInput: title"-->
+
     <div>
-        <div class="col-sm-6" id="list" style="border-style:solid">
-            <button id="filterbutton">Filter</button>
-            <input id="searchbar"></input>
+        <div class="col-sm-6" id="list" style="border-style:solid"  >
+            <div data-bind="input: setFilter()">
+                <label>Filter locations<input type="text" data-bind='textInput: searchBar, valueUpdate: "input" ' /></label>
+                <h2>Hello, <span data-bind="text: searchBar"> </span>!</h2>
+            </div>
             <hr>
-            <h3>Store Locations</h3>
-            <ul id="u-list"></ul>
+            <div>
+                <h3>Store Locations</h3>
+                <ul data-bind= "foreach: locationList">
+                    <li data-bind= "text: title"></li>
+                </ul>
+            </div>
         </div>
+
         <div class="col-sm-6" id="map" style="height:350px; width:100vw; border-style:solid">
             MAP
         </div>
