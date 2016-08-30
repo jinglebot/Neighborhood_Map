@@ -96,7 +96,7 @@
 	// 	zoom: 13
 	// });
 
-	// function initMap () {
+	function initMap () {
 
 		// Create a map object and specify the DOM element for display.
 		var map;
@@ -108,7 +108,7 @@
 			scrollwheel: false,
 			zoom: 13
 		});
-	// }
+	}
 
 
 	// var largeInfowindow = new google.maps.InfoWindow();
@@ -143,7 +143,7 @@
 		// map.fitBounds(bounds);
     	// center the map
 		// map.setCenter(bounds.getCenter());
-	}
+	// }
 
 	// for (var i = 0; i < locations.length; i++) {
 	// 	// var position = locations[i].latlng;
