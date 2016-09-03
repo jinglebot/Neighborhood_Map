@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="google-site-verification" content="cKaao5LD1b8NVw4t1oNkiD91fAOTXh1giyutpfYySnU" />
     <title>Neighborhood Map</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
@@ -17,21 +18,17 @@
 
     <hr>
 
-    <!-- data-bind= "with: currentLocation" - will save input in searchBar
-        $parent.registerClick
-        data-bind="textInput: title"-->
-
     <div>
         <div class="col-sm-6" id="list" style="border-style:solid"  >
-            <div data-bind="input: setFilter()">
+            <div>
                 <label>Filter locations<input type="text" data-bind='textInput: searchBar, valueUpdate: "input" ' /></label>
                 <h2>Hello, <span data-bind="text: searchBar"> </span>!</h2>
             </div>
             <hr>
             <div>
                 <h3>Store Locations</h3>
-                <ul data-bind= "foreach: locationList">
-                    <li data-bind= "text: title"></li>
+                <ul data-bind= "foreach: filteredLocationList">
+                    <li data-bind= "text: $data.title, click: $parent.openInfowindow, visible: showItem"></li>
                 </ul>
             </div>
         </div>
@@ -44,6 +41,6 @@
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/libs/knockout-3.4.0.js"></script>
     <script src="js/script.js"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&callback=initMap" async defer></script> -->
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&callback=initMap" async defer></script>
 </body>
 </html>
