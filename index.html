@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="cKaao5LD1b8NVw4t1oNkiD91fAOTXh1giyutpfYySnU" />
     <title>Neighborhood Map</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
     <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 <body>
@@ -18,8 +18,8 @@
 
     <hr>
 
-    <div>
-        <div class="col-sm-6" id="list" style="border-style:solid"  >
+    <div class="row">
+        <div class="col-sm-6 col-md-3" id="list" >
             <div>
                 <label>Filter locations<input type="text" data-bind='textInput: searchBar, valueUpdate: "input" ' /></label>
                 <h2>Hello, <span data-bind="text: searchBar"> </span>!</h2>
@@ -28,19 +28,33 @@
             <div>
                 <h3>Store Locations</h3>
                 <ul data-bind= "foreach: filteredLocationList">
-                    <li data-bind= "text: $data.title, click: $parent.openInfowindow, visible: showItem"></li>
+                    <li data-bind= "text: $data.title, click: $parent.openInfowindow($data)"></li>
+                    <!--<li data-bind= "text: $data.title"></li>-->
                 </ul>
             </div>
         </div>
 
-        <div class="col-sm-6" id="map" style="height:350px; width:100vw; border-style:solid">
+        <div class="col-sm-6 col-md-9" id="map" style="height:100vh; max-height:500px; border-style:solid">
             MAP
         </div>
     </div>
 
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/libs/knockout-3.4.0.js"></script>
+    <!--<script src="js/lib/sha1.js"></script>-->
+    <script src="js/libs/oauth-signature.min.js"></script>
     <script src="js/script.js"></script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&callback=initMap" async defer></script>
+    <script>
+        // Google Streetview as background image
+        (function loadData() {
+            var streetvalue = "Hollywood Blvd.";
+            var cityvalue = "Los Angeles";
+            var address = streetvalue + " " + cityvalue;
+            var googURL = 'https://maps.googleapis.com/maps/api/streetview?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&size=600x400&location=' + address + '';
+            $('body').append('<img class="bgimg" alt="' + address + '" src="' + googURL + '">');
+            return false;
+        })();
+    </script>
 </body>
 </html>
