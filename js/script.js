@@ -147,7 +147,7 @@
 		parameters.oauth_signature = encodedSignature;
 	
 		var settings = {
-			url: yelpUR,
+			url: yelpURL,
 			data: parameters,
 			cache: true,                
 			dataType: 'jsonp',
@@ -199,10 +199,14 @@
 			// console.log("parsedJson: " + JSON.stringify(parsedjson));
        
 			$('body').append(
-				"parsedJson status: " + parsedjson.status + '</br>' + 
-				"errorStatus: " + textStatus + '</br>' + 
-				"errorThrown: " + errorThrown;
-			);        
+if (textStatus == 404) {
+// marker.content = '<div id= "content" class="center-content row">'+
+// 'Yelp data failed to load.' +
+// '</div>';			
+// "parsedJson status: " + parsedjson.status + '</br>' + 
+// 				"errorStatus: " + textStatus + '</br>' + 
+// 				"errorThrown: " + errorThrown);
+}
         	});
 	};	
 
