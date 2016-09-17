@@ -198,14 +198,12 @@
 			//  error: function (parsedjson, textStatus, errorThrown) {
 			// console.log("parsedJson: " + JSON.stringify(parsedjson));
        
-			$('body').append(
-if (textStatus == 404) {
+			if (textStatus == 404) {
+				$('body').append(
 // marker.content = '<div id= "content" class="center-content row">'+
 // 'Yelp data failed to load.' +
 // '</div>';			
-// "parsedJson status: " + parsedjson.status + '</br>' + 
-// 				"errorStatus: " + textStatus + '</br>' + 
-// 				"errorThrown: " + errorThrown);
+					"parsedJson status: " + parsedjson.status + '</br>' + "errorStatus: " + textStatus + '</br>' + "errorThrown: " + errorThrown);
 }
         	});
 	};	
