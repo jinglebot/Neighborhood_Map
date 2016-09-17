@@ -1,4 +1,3 @@
-// (function() {
 	// MODEL
 	var initLocations = [
 		{
@@ -84,114 +83,103 @@
 
 	// VIEW
 	var map;
-	var markers = [];
 
-	function initMap() {
+	var initMap = function() {
 		// make map
-		var map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: 34.134558, lng:-118.322478},
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat: 34.134558, lng:-118.322478}, // Hollywood Sign, Los Angeles, CA
 			scrollwheel: false,
 			zoom: 13
 		});
 
-		// make markers
-		var largeInfowindow = new google.maps.InfoWindow();
-		var bounds = new google.maps.LatLngBounds();
-
-		for (var i = 0; i < initLocations.length; i++) { 	// for every object in array locations
-			var title = initLocations[i].title;
-			var position = initLocations[i].loc;
-			// console.log(position);
-			var marker = new google.maps.Marker({
-				map: map,
-				position: position,
-				title: title,
-				animation: google.maps.Animation.DROP,
-				id: title
-			});
-
-			markers.push(marker);
-			bounds.extend(marker.position);
-			marker.addListener('click', function() {
-				populateInfowindow(this, largeInfowindow);
-			});
-		}
-
-		// for checking
-		// for (var i = 0; i < markers.length; i++){
-		// 	console.log(markers[i].title);
-		// }
-
-		map.fitBounds(bounds);
-		map.setCenter(bounds.getCenter());
-	}
+		ko.applyBindings(new ViewModel() );
+	};
 
 	// for each marker's infowindow
-	function populateInfowindow(marker, infowindow) {
+	var populateInfowindow =  function(marker, infowindow) {
 		if (infowindow.marker != marker) {
+				// https://api.yelp.com/v2/search?term=location=marker.address;
 			infowindow.marker = marker;
-			infowindow.setContent('<div id="content" class="center-content">'+'<h3><b>'+ marker.title +'</b></h3>'+'</div>');
+			infowindow.setContent('<div id="content" class="center-content">'+'<h4><b>'+ marker.title +'</b></h4>'+'<div>'+ marker.street +', '+ marker.city +'</div>'+'<div>Yelp Review</div>'+'</div>');
 			infowindow.open(map, marker);
-			// infowindow.addListener('closeclick', function(){
-			// 	infowindow.setMarker(null);
-			// });
 		}
-	}
+	};
+
 
 
 	var ViewModel = function() {
 		// self === ViewModel
 		var self = this;
 
-		// viewmodel's array
+		// ViewModel's array
 		this.locationList = ko.observableArray([]);
 
-		// initializes locationList array with items from initLocations array
+		// initializes locationList array with initLocations array
 		initLocations.forEach(function(locItem){
 			var loc = new Locate(locItem);
 			self.locationList.push( loc );
 		});
 
-		// viewmodel's filter storage
+		// ViewModel's filter storage
 		this.searchBar = ko.observable("");
 
-		// initializes locationList array items as visible
-		this.locationList().forEach(function(locItem){
-			locItem.showItem = ko.observable(true);
-			 //console.log(locItem.showItem());
+		// initialize infowindows and boundaries
+		var largeInfowindow = new google.maps.InfoWindow();
+		var bounds = new google.maps.LatLngBounds();
+
+		// make markers in locationList array
+		self.locationList().forEach(function (locItem) {
+			var title = locItem.title;
+			var position = locItem.loc;
+			var street = locItem.street;
+			var city = locItem.city;
+			var marker = new google.maps.Marker({
+				// map: map,
+				title: title,
+				position: position,
+				street: street,
+				city: city,
+				animation: google.maps.Animation.DROP,
+				// visible: true,
+				id: title
+    			});
+			marker.addListener('click', function() {
+				populateInfowindow(this, largeInfowindow);
+			});
+			// console.log(marker.position);
+			locItem.marker = marker;
 		});
 
-		// viewmodel's filtered list storage
+		// open marker infowindow by clicking location list titles
+		this.openInfowindow = function(data) {
+			populateInfowindow(data.marker, largeInfowindow);
+		};
+
+		// ViewModel's filter locationList
 		this.filteredLocationList = ko.computed(function() {
-			// if searchBar is empty
-			if (!self.searchBar() ) {
-				return self.locationList();
-			} else {
-				// get the array elements
-				return ko.utils.arrayFilter(self.locationList(), function(prod) {
-					// get the array elements title
-					var title = prod.title;
-					// compare title to searchBar
-					// for (var i = 0; i < title.length; i++ ) {
-					if (title != self.searchBar()) {
-						prod.showItem(false);
-						console.log(title + " " + prod.showItem());
-						return prod.showItem();
-					}
-				});
-			}
+			return ko.utils.arrayFilter(self.locationList(), function(locate) {
+				if ( !self.searchBar() || (locate.title.toLowerCase().indexOf(self.searchBar().toLowerCase()) >= 0) ) { 
+					locate.marker.setVisible(true); 
+					locate.marker.setMap(map); 
+					bounds.extend(locate.marker.position);
+					// console.log(locate.marker.position);
+					map.fitBounds(bounds);
+					map.setCenter(bounds.getCenter());
+					return true; 
+				} else { 
+					locate.marker.setVisible(false); 
+					locate.marker.setMap(null); 
+					return false; 
+				}
+			});
 		});
-
-// TODO:
-		// filter list
-		// connect searchBar to locationList to filter list
-		// put markers of  <ul> on map == markers of filtered locationList
-		// connect listener for clicking list to show marker and infowindow
-
-// Qs:
-		// do you filter locationList or do you make a new array? standard or knockout?
-		// how do you get google to work inside Viewmodel so I can put markers on locationList?
-
 	};
 
-	ko.applyBindings(new ViewModel() );
+// TODO:
+		// add APIs
+
+// Qs:
+		// where to put APIs?
+		// is my separation of concerns good enough?
+		// why does that darn infowindow keep popping out at loading?
+
