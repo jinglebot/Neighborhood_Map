@@ -6,15 +6,15 @@ A. What I did so far:
 
 1. do layout of location list and display
 
-	- Bootstrap makes it easy
+	- *_Bootstrap_* makes it easy
 
 2. create list `<ul>`, update to knockout
 
-	- `<ul>` by knockout, map by js/jQuery
+	- `<ul>` by _knockout_, map by js/jQuery
 
 3. add list filter functionality
  
-	- use knockout data-bind
+	- use _knockout_ _data-bind_
 
 4. create map display
  
@@ -34,7 +34,7 @@ A. What I did so far:
 	 
 8. add APIs
 
-	- get oauth signature successfully
+	- get _oauth signature_ successfully
 	- get results to display on page
 
 9. add hamburger menu functionality
@@ -45,7 +45,7 @@ A. What I did so far:
 
 B. Problems encountered:
 
-1. [x] get Google map to display
+1. [x] get **_Google_** map to display
 
 	- get API key
 
@@ -67,7 +67,7 @@ B. Problems encountered:
 
 7. [x] get APIs to show
 
-	- [x] which API to use -- Yelp
+	- [x] which API to use -- **_Yelp_**
 	
 	- [ ] where to include API -- infowindows
 
