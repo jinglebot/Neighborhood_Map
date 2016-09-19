@@ -2,7 +2,7 @@
 
 
 
-A. What I did so far:
+A. What I did:
 
 1. do layout of location list and display
 
@@ -69,10 +69,13 @@ B. Problems encountered:
 
 	- [x] which API to use -- **_Yelp_**
 	
-	- [ ] where to include API -- infowindows
+	- [x] where to include API -- infowindows
 
-8.  [ ] make sure there is separation of concerns in mvc style: model, view and viewmodel
+8.  [x] make sure there is separation of concerns in mvc style: model, view and viewmodel
 
-9.  [ ] how to place error catch
+9.  [x] how to place error catch
 
 
+C. How to access my project
+
+Visit my project: [Numismatic Guide to LA] (https://jinglebot.github.io/frontend-nanodegree-neighborhood-map/)
