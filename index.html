@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
@@ -9,6 +10,7 @@
     <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
     <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
+
 <body>
     <div class="container">
         <div id="greeting" class="greeting" style="text-align:center">
@@ -16,24 +18,24 @@
             <h4>or a fancy way of saying</h4>
             <h3>A Coin Collector's Treasure Hunting Map of LA</h3>
         </div>
-    
+
         <hr>
-    
+
         <div class="row">
-            <div class="col-sm-6 col-md-3" id="list" >
+            <div class="col-sm-6 col-md-3" id="list">
                 <div>
                     <label><h4>Search<input type="text" data-bind='textInput: searchBar, valueUpdate: "input" ' /></h4></label>
                 </div>
                 <hr>
                 <div>
                     <h3>Store Locations</h3>
-                    <ul data-bind= "foreach: filteredLocationList">
-                        <li data-bind= "text: $data.title, click: $parent.openInfowindow($data)"></li>
+                    <ul data-bind="foreach: filteredLocationList">
+                        <li data-bind="text: $data.title, click: $parent.openInfowindow($data)"></li>
                         <!--<li data-bind= "text: $data.title"></li>-->
                     </ul>
                 </div>
             </div>
-    
+
             <div class="col-sm-6 col-md-9" id="map" style="height:100vh; max-height:500px; border-style:solid">
                 MAP
             </div>
@@ -44,13 +46,13 @@
     <script src="js/libs/oauth-signature.min.js"></script>
     <script src="js/script.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&callback=initMap" async defer></script>
-            <!--<style>-->
-            <!--    body {-->
-            <!--        background=image: https://maps.googleapis.com/maps/api/streetview?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&size=600x400&location="Hollywood+Blvd.+Los Angeles,+CA";-->
-            <!--    }-->
-            <!--</style>-->
+    <!--<style>-->
+    <!--    body {-->
+    <!--        background=image: https://maps.googleapis.com/maps/api/streetview?key=AIzaSyAeJ46vFkmxtbDLeMy8Oq1x6eOXRnrZ59o&size=600x400&location="Hollywood+Blvd.+Los Angeles,+CA";-->
+    <!--    }-->
+    <!--</style>-->
     <!--<script>-->
-        <!--// Google Streetview as background image-->
+    <!--// Google Streetview as background image-->
     <!--    (function loadData() {-->
     <!--        var streetvalue = "Hollywood Blvd.";-->
     <!--        var cityvalue = "Los Angeles";-->
@@ -61,4 +63,5 @@
     <!--    })();-->
     <!--</script>-->
 </body>
+
 </html>
