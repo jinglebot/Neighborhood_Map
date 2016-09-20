@@ -79,3 +79,13 @@ B. Problems encountered:
 C. How to access my project
 
 Visit my project: [Numismatic Guide to LA] (https://jinglebot.github.io/frontend-nanodegree-neighborhood-map/)
+
+Or:
+
+1. Download or fork the application from: [https://github.com/jinglebot/frontend-nanodegree-neighborhood-map/tree/master]
+2. Click the *Settings* button to get to Settings Page. 
+3. Under *Github Pages*, click the _Your site is published at [https://jinglebot.github.io/frontend-nanodegree-neighborhood-map/]_ .
+4. Use filter box to filter both the list items and the map markers.
+5. Select a list item or map marker to open an info window describing the marker.
+ 
+
