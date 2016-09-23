@@ -177,7 +177,8 @@
 	        dataType: 'jsonp'
 	    };
 
-	    $.ajax(settings)
+	    //$.ajax(settings)
+	    $.jsonp(settings)
 	        .done(function(results) {
 	            var yelp = {
 	                name: results.businesses[0].name,
