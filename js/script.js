@@ -128,7 +128,7 @@
 	};
 
 	var googleError = function() {
-	    $('#map').text("Error: Map Load Failure");
+	    $('#map').text("Google Map API Load Failure. Please try again later.");
 	};
 
 	// Type check
@@ -147,7 +147,7 @@
 	var yelpURL = 'https://api.yelp.com/v2/search?';
 
 	// Yelp API
-	var yelpAPI = function(data) {
+	var yelpAPI = function(data, infowindow) {
 	    var title = data.title;
 	    var city = data.city;
 
@@ -161,7 +161,6 @@
 	        callback: 'cb',
 	        term: title,
 	        location: city,
-	        // cll: loc,
 	        limit: 1
 	    };
 
@@ -175,9 +174,7 @@
 	        url: yelpURL,
 	        data: parameters,
 	        cache: true,
-	        dataType: 'jsonp',
-	        callback: 'cb',
-	        jsonpCallback: 'cb'
+	        dataType: 'jsonp'
 	    };
 
 	    $.ajax(settings)
@@ -188,47 +185,70 @@
 	                rating: results.businesses[0].rating_img_url_small,
 	                image: results.businesses[0].image_url,
 	                text: results.businesses[0].snippet_text,
+	                count: results.businesses[0].review_count,
 	                address1: results.businesses[0].location.display_address[0],
 	                address2: results.businesses[0].location.city + ", " + results.businesses[0].location.state_code
 	            };
 	            console.log(results);
-	            $('#yelpImage').attr({
-	                src: yelp.image,
-	                alt: "yelp image"
-	            });
-	            $('#yelpName').text(yelp.name);
-	            $('#yelpAddress1').text(yelp.address1);
-	            $('#yelpAddress2').text(yelp.address2);
-	            $('#yelpRating').attr({
-	                src: yelp.rating,
-	                alt: "yelp rating"
-	            });
-	            $('#yelpText').text(yelp.text);
-	            $('#yelpURL').attr({
-	                href: yelp.url
+	            //$('#yelpImage').attr({
+	            //    src: yelp.image,
+	            //    alt: "yelp image"
+	            //});
+	            //$('#yelpName').text(yelp.name);
+	            //$('#yelpAddress1').text(yelp.address1);
+	            //$('#yelpAddress2').text(yelp.address2);
+	            //$('#yelpRating').attr({
+	            //    src: yelp.rating,
+	            //    alt: "yelp rating"
+	            //});
+	            //$('#yelpText').text(yelp.text);
+	            //$('#yelpURL').attr({
+	            //    href: yelp.url
 	                    // text: "...More from Yelp"
-	            });
-	            $('#yelpURL').text("...More");
+	            //});
+	            //$('#yelpURL').text("...More");
 	            // console.log(yelp.name);
 	            // console.log(yelp.url);
 	            // console.log(yelp.rating);
 	            // console.log(yelp.image);
 	            // console.log(yelp.text);
 	            // console.log(yelp.address);
+	        data.content = '<div id= "content" class="center-content row">' +
+	            '<div class="col-md-4" style="margin: auto">' +
+	            '<img id="yelpImage" class="img-responsive" style="background-size: cover; margin: auto" src= "' + yelp.image + '" alt= "' + yelp.name + '">' +
+	            '</div>' +
+	            '<div class="col-md-8">' +
+	            '<div>' +
+	            '<h4  id="yelpName">' + yelp.name + '</h4>' +
+	            '<h6  id="yelpAddress1">' + yelp.address1 + '</h6>' +
+	            '<h6  id="yelpAddress2">' + yelp.address2 + '</h6>' +
+	            '</div>' +
+	            '<div>' +
+	            '<img id="yelpRating" class="img-responsive" src= "' + yelp.rating + '" alt= "' + yelp.name + '">' +
+	            '<small id="yelpCount"> Based on ' + yelp.count + ' reviews</small>' +
+	            '<p><a id="yelpURL" href= "' + yelp.url + '">More from ' +
+	            '<img id="yelpLogo" class="img-responsive" alt= "yelp logo" style="max-width: 3.5em" src= "yelplogo.png">' + 
+	            '</a></p>' +
+	            '</div>' +
+	            '</div>' +
+	            '</div>';
+	        infowindow.setContent(data.content);
 	        })
 	        .fail(function(parsedjson, textStatus, errorThrown) {
-	            console.log("parsedJson: " + JSON.stringify(parsedjson));
+	            //console.log("parsedJson: " + JSON.stringify(parsedjson));
+	            errorThrown = "Yelp API Load Failure. Please try again later.";
 	            // alert("Yelp data could not be loaded.");
 	            // $('#yelpName').text("Oops! Yelp data crashed and burned and virused and could not be loaded.");
 	            //  error: function (parsedjson, textStatus, errorThrown) {
 	            // console.log("parsedJson: " + JSON.stringify(parsedjson));
 
-	            if (textStatus == 404) {
+	            if (textStatus == "error") {
 	                $('body').append(
 	                    // marker.content = '<div id= "content" class="center-content row">'+
 	                    // 'Yelp data failed to load.' +
 	                    // '</div>';			
-	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorStatus: " + textStatus + '</br>' + "errorThrown: " + errorThrown);
+	                    //"parsedJson status: " + parsedjson.status + '</br>' + "errorStatus: " + textStatus + '</br>' + "errorThrown: " + errorThrown);
+	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
 	            }
 	        });
 	};
@@ -238,26 +258,29 @@
 	var populateInfowindow = function(marker, infowindow) {
 	    if (infowindow.marker != marker) {
 	        infowindow.marker = marker;
-	        console.log(marker);
-	        marker.content = '<div id= "content" class="center-content row">' +
-	            '<div class="col-md-4">' +
-	            '<img id="yelpImage" class="img-responsive">' +
-	            '</div>' +
-	            '<div class="col-md-8">' +
-	            '<div>' +
-	            '<h4  id="yelpName"></h4>' +
-	            '<h6  id="yelpAddress1"></h6>' +
-	            '<h6  id="yelpAddress2"></h6>' +
-	            '</div>' +
-	            '<div>' +
-	            '<img id="yelpRating" class="img-responsive">' +
-	            '<p id="yelpText"></p>' +
-	            '<a id="yelpURL"></a>' +
-	            '</div>' +
-	            '</div>' +
-	            '</div>';
-	        yelpAPI(marker);
-	        infowindow.setContent(marker.content);
+	        // console.log(marker);
+	        // marker.content = '<div id= "content" class="center-content row">' +
+	        //     '<div class="col-md-4">' +
+	        //     '<img id="yelpImage" class="img-responsive">' +
+	        //     '</div>' +
+	        //     '<div class="col-md-8">' +
+	        //     '<div>' +
+	        //     '<h4  id="yelpName"></h4>' +
+	        //     '<h6  id="yelpAddress1"></h6>' +
+	        //     '<h6  id="yelpAddress2"></h6>' +
+	        //     '</div>' +
+	        //     '<div>' +
+	        //     '<img id="yelpRating" class="img-responsive">' +
+	        //     '<p id="yelpText"></p>' +
+	        //     '<a id="yelpURL"></a>' +
+	        //     '</div>' +
+	        //     '</div>' +
+	        //     '</div>';
+	        yelpAPI(marker, infowindow);
+	        map.setCenter(marker.position);
+	        // console.log(marker.position);
+	        // map.panBy(0, 100);
+	        // infowindow.setContent(marker.content);
 	        infowindow.open(map, marker);
 	    }
 	};
@@ -312,12 +335,15 @@
 	            populateInfowindow(this, largeInfowindow);
 	        });
 	    });
-
+// EITHER FOREACH location list OR filteredLocationList = KO COMPUTED
 	    // access infowindow by clicking location list item
-	    this.openInfowindow = function(data) {
-	        data.marker.setAnimation(google.maps.Animation.DROP);
-	        populateInfowindow(data.marker, largeInfowindow);
-	    };
+		    this.openInfowindow = function($data) {
+		    	// console.log(this);
+		    	// console.log($data);
+		    	// $data.marker = marker;
+		        $data.marker.setAnimation(google.maps.Animation.DROP);
+		        populateInfowindow($data.marker, largeInfowindow);
+		    };
 
 	    google.maps.event.addListener(largeInfowindow, 'closeclick', function() {
 	        largeInfowindow.opened = false;
