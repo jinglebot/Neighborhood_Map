@@ -172,6 +172,7 @@
 
 	    var settings = {
 	        url: yelpURL,
+	        callback: cb,
 	        data: parameters,
 	        cache: true,
 	        dataType: 'jsonp'
