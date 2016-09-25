@@ -219,13 +219,15 @@
 	            '</div>' +
 	            '</div>';
 	        infowindow.setContent(data.content);
+		$('#errormsg').text("");
 	        })
 	        .fail(function(parsedjson, textStatus, errorThrown) {
 	            //console.log("parsedJson: " + JSON.stringify(parsedjson));
 	            errorThrown = "Yelp API Load Failure. Please try again later.";
 	            if (textStatus == "error") {
-	                $('body').append(
-	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
+			$('#errormsg').text("parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
+// 	                $('body').append(
+// 	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
 	            }
 	        });
 	};
