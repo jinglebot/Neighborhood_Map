@@ -171,7 +171,7 @@
 	    parameters.oauth_signature = encodedSignature;
 
 	    var settings = {
-	        url: yelpURL,
+	        url: elpURL,
 	        callback: 'cb',
 	        data: parameters,
 	        cache: true,
