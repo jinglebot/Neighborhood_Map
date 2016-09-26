@@ -191,7 +191,7 @@
 	                address1: results.businesses[0].location.display_address[0],
 	                address2: results.businesses[0].location.city + ", " + results.businesses[0].location.state_code
 	            };
-	            //console.log(results);
+	            console.log(results);
 	            // console.log(yelp.name);
 	            // console.log(yelp.url);
 	            // console.log(yelp.rating);
