@@ -232,8 +232,7 @@
 
 	    .fail(function(parsedjson, textStatus, errorThrown) {
 	        errorThrown = "Yelp API Load Failure. Please try again later.";
-	        $('#errormsg').text("parsedJson status: " + parsedjson.status + '</br>' + 
-					    "errorStatus: " + textStatus + '</br>' + 
+	        $('#errormsg').text("errorStatus: " + textStatus + '</br>' + 
 					    "errorThrown: " + errorThrown);
 	    });
 	};
