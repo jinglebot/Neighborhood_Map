@@ -129,6 +129,7 @@
 
 	var googleError = function() {
 	    $('#map').text("Google Map API Load Failure. Please try again later.");
+	    $('#errormsg').text("GOOGLE MAP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");		
 	};
 
 	// Type check
