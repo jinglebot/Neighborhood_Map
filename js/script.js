@@ -235,8 +235,7 @@
             .fail(function(d,msg) {
              console.log('Yelp API ', + msg);
               infowindow.setContent('<em>Yelp API could not be reached</em>');
-           }
-//	        $('#errormsg').text("YELP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");
+	        $('#errormsg').text("YELP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");
 	    });
 	};
 
