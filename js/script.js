@@ -152,7 +152,7 @@
 	    var city = data.city;
 
 	    var parameters = {
-	        oauth_consumer_key: 'igSLQFcwtRG4np5X35A0wg',
+	        oauth_consumer_key: 'igSLQFcwtRG4np5X35A0w',
 	        oauth_token: 'LaAnI7Te92kGMOuR_B5A2mCdUG6H-H3K',
 	        oauth_nonce: nonce_generate(),
 	        oauth_timestamp: Math.floor(Date.now() / 1000),
