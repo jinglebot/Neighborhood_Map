@@ -129,16 +129,12 @@
 
 	var googleError = function() {
 	    $('#map').text("Google Map API Load Failure. Please try again later.");
-	    $('#errormsg').text("GOOGLE MAP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");		
 	};
 
 	// Type check
 	if (typeof map === 'undefined') {
 	    googleError();
-	} else {
-	    $('#errormsg').text(" ");		
-	}
-
+	} 
 
 	// YELP
 	// generate random number function for oauth_nonce parameter
@@ -223,7 +219,7 @@
 	                '</div>' +
 	                '</div>';
 	            infowindow.setContent(data.content);
-	            $('#errormsg').text("");
+	            $('#errormsg').text("SUCCESSFUL LOADING");
 	        })
 	        // 	        .fail(function(parsedjson, textStatus, errorThrown) {
 	        // 	            console.log("parsedJson: " + JSON.stringify(parsedjson));
