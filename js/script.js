@@ -175,11 +175,11 @@
 	        data: parameters,
 	        cache: true,
 	        dataType: 'jsonp',
-	        timeout: 2500
+	        timeout: 5000
 	    };
 
-	    //$.ajax(settings)
-	    $.jsonp(settings)
+	    $.ajax(settings)
+// 	    $.jsonp(settings)
 	        .done(function(results) {
 	            var yelp = {
 	                name: results.businesses[0].name,
@@ -230,12 +230,11 @@
 	        // 	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
 	        // 	            }
 
-	    .fail(function(parsedjson, timed, errorThrown) {
-		    console.log(timeout);
+	    .fail(function(parsedjson, textStatus, errorThrown) {
 	        errorThrown = "Yelp API Load Failure. Please try again later.";
-	        if (timed === "timeout") {
-	            $('#errormsg').text("Error: " + errorThrown);
-	        }
+	        $('#errormsg').text("parsedJson status: " + parsedjson.status + '</br>' + 
+					    "errorStatus: " + textStatus + '</br>' + 
+					    "errorThrown: " + errorThrown);
 	    });
 	};
 
