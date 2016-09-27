@@ -172,9 +172,11 @@
 
 	    var settings = {
 	        url: yelpURL,
+	        callback: 'cb',
 	        data: parameters,
 	        cache: true,
-	        dataType: 'jsonp'
+	        dataType: 'jsonp',
+	        timeout: 5000
 	    };
 
 	    $.ajax(settings)
@@ -189,43 +191,39 @@
 	                address1: results.businesses[0].location.display_address[0],
 	                address2: results.businesses[0].location.city + ", " + results.businesses[0].location.state_code
 	            };
-	            //console.log(results);
+	            console.log(results);
 	            // console.log(yelp.name);
 	            // console.log(yelp.url);
 	            // console.log(yelp.rating);
 	            // console.log(yelp.image);
 	            // console.log(yelp.text);
 	            // console.log(yelp.address);
-	        data.content = '<div id= "content" class="center-content row">' +
-	            '<div class="col-md-4" style="margin: auto">' +
-	            '<img id="yelpImage" class="img-responsive" style="background-size: cover; margin: auto" src= "' + yelp.image + '" alt= "' + yelp.name + '">' +
-	            '</div>' +
-	            '<div class="col-md-8">' +
-	            '<div>' +
-	            '<h4  id="yelpName">' + yelp.name + '</h4>' +
-	            '<h6  id="yelpAddress1">' + yelp.address1 + '</h6>' +
-	            '<h6  id="yelpAddress2">' + yelp.address2 + '</h6>' +
-	            '</div>' +
-	            '<div>' +
-	            '<img id="yelpRating" class="img-responsive" src= "' + yelp.rating + '" alt= "' + yelp.name + '">' +
-	            // TODO: put if statement for singular/plural of review
-	            '<small id="yelpCount"> Based on ' + yelp.count + ' reviews</small>' +
-	            '<p><a id="yelpURL" href= "' + yelp.url + '">More from ' +
-	            '<img id="yelpLogo" class="img-responsive" alt= "yelp logo" style="max-width: 3.5em" src= "yelplogo.png">' + 
-	            '</a></p>' +
-	            '</div>' +
-	            '</div>' +
-	            '</div>';
-	        infowindow.setContent(data.content);
+	            data.content = '<div id= "content" class="center-content row">' +
+	                '<div class="col-md-4" style="margin: auto">' +
+	                '<img id="yelpImage" class="img-responsive" style="background-size: cover; margin: auto" src= "' + yelp.image + '" alt= "' + yelp.name + '">' +
+	                '</div>' +
+	                '<div class="col-md-8">' +
+	                '<div>' +
+	                '<h4  id="yelpName">' + yelp.name + '</h4>' +
+	                '<h6  id="yelpAddress1">' + yelp.address1 + '</h6>' +
+	                '<h6  id="yelpAddress2">' + yelp.address2 + '</h6>' +
+	                '</div>' +
+	                '<div>' +
+	                '<img id="yelpRating" class="img-responsive" src= "' + yelp.rating + '" alt= "' + yelp.name + '">' +
+	                // TODO: put if statement for singular/plural of review
+	                '<small id="yelpCount"> Based on ' + yelp.count + ' reviews</small>' +
+	                '<p><a id="yelpURL" href= "' + yelp.url + '">More from ' +
+	                '<img id="yelpLogo" class="img-responsive" alt= "yelp logo" style="max-width: 3.5em" src= "yelplogo.png">' +
+	                '</a></p>' +
+	                '</div>' +
+	                '</div>' +
+	                '</div>';
+	            infowindow.setContent(data.content);
+	            $('#errormsg').text(" ");
 	        })
-	        .fail(function(parsedjson, textStatus, errorThrown) {
-	            //console.log("parsedJson: " + JSON.stringify(parsedjson));
-	            errorThrown = "Yelp API Load Failure. Please try again later.";
-	            if (textStatus == "error") {
-	                $('body').append(
-	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
-	            }
-	        });
+	    .fail(function() {
+	        $('#errormsg').text("YELP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");
+	    });
 	};
 
 
@@ -328,4 +326,3 @@
 
 	// Qs:
 	// why is the search input box spilling past its <div>?
-
