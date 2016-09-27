@@ -230,10 +230,9 @@
 	        // 	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
 	        // 	            }
 
-	    .fail(function(parsedjson, textStatus, errorThrown) {
-	        errorThrown = "Yelp API Load Failure. Please try again later.";
-	        $('#errormsg').text("errorStatus: " + textStatus + '</br>' + 
-					    "errorThrown: " + errorThrown);
+// 	    .fail(function(parsedjson, textStatus, errorThrown) {
+	    .fail(function() {
+	        $('#errormsg').text("YELP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");
 	    });
 	};
 
