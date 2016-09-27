@@ -219,7 +219,7 @@
 	                '</div>' +
 	                '</div>';
 	            infowindow.setContent(data.content);
-	            $('#errormsg').text("SUCCESSFUL LOADING");
+	            $('#errormsg').text(" ");
 	        })
 	        // 	        .fail(function(parsedjson, textStatus, errorThrown) {
 	        // 	            console.log("parsedJson: " + JSON.stringify(parsedjson));
@@ -231,6 +231,7 @@
 	        // 	            }
 
 	    .fail(function(parsedjson, timed, errorThrown) {
+		    console.log(timeout);
 	        errorThrown = "Yelp API Load Failure. Please try again later.";
 	        if (timed === "timeout") {
 	            $('#errormsg').text("Error: " + errorThrown);
