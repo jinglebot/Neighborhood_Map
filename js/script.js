@@ -135,6 +135,8 @@
 	// Type check
 	if (typeof map === 'undefined') {
 	    googleError();
+	} else {
+	    $('#errormsg').text(" ");		
 	}
 
 
