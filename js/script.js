@@ -189,24 +189,7 @@
 	                address1: results.businesses[0].location.display_address[0],
 	                address2: results.businesses[0].location.city + ", " + results.businesses[0].location.state_code
 	            };
-	            console.log(results);
-	            //$('#yelpImage').attr({
-	            //    src: yelp.image,
-	            //    alt: "yelp image"
-	            //});
-	            //$('#yelpName').text(yelp.name);
-	            //$('#yelpAddress1').text(yelp.address1);
-	            //$('#yelpAddress2').text(yelp.address2);
-	            //$('#yelpRating').attr({
-	            //    src: yelp.rating,
-	            //    alt: "yelp rating"
-	            //});
-	            //$('#yelpText').text(yelp.text);
-	            //$('#yelpURL').attr({
-	            //    href: yelp.url
-	                    // text: "...More from Yelp"
-	            //});
-	            //$('#yelpURL').text("...More");
+	            //console.log(results);
 	            // console.log(yelp.name);
 	            // console.log(yelp.url);
 	            // console.log(yelp.rating);
@@ -225,9 +208,11 @@
 	            '</div>' +
 	            '<div>' +
 	            '<img id="yelpRating" class="img-responsive" src= "' + yelp.rating + '" alt= "' + yelp.name + '">' +
+	            // TODO: put if statement for singular/plural of review
 	            '<small id="yelpCount"> Based on ' + yelp.count + ' reviews</small>' +
-	            '<a id="yelpURL" href= "' + yelp.url + '">More from <img id="yelpLogo" class="img-responsive" alt= "yelp logo" style="max-width: 2.5em" src= "yelplogo.png">' + 
-	            '</a>' +
+	            '<p><a id="yelpURL" href= "' + yelp.url + '">More from ' +
+	            '<img id="yelpLogo" class="img-responsive" alt= "yelp logo" style="max-width: 3.5em" src= "yelplogo.png">' + 
+	            '</a></p>' +
 	            '</div>' +
 	            '</div>' +
 	            '</div>';
@@ -236,17 +221,8 @@
 	        .fail(function(parsedjson, textStatus, errorThrown) {
 	            //console.log("parsedJson: " + JSON.stringify(parsedjson));
 	            errorThrown = "Yelp API Load Failure. Please try again later.";
-	            // alert("Yelp data could not be loaded.");
-	            // $('#yelpName').text("Oops! Yelp data crashed and burned and virused and could not be loaded.");
-	            //  error: function (parsedjson, textStatus, errorThrown) {
-	            // console.log("parsedJson: " + JSON.stringify(parsedjson));
-
 	            if (textStatus == "error") {
 	                $('body').append(
-	                    // marker.content = '<div id= "content" class="center-content row">'+
-	                    // 'Yelp data failed to load.' +
-	                    // '</div>';			
-	                    //"parsedJson status: " + parsedjson.status + '</br>' + "errorStatus: " + textStatus + '</br>' + "errorThrown: " + errorThrown);
 	                    "parsedJson status: " + parsedjson.status + '</br>' + "errorThrown: " + errorThrown);
 	            }
 	        });
@@ -258,28 +234,10 @@
 	    if (infowindow.marker != marker) {
 	        infowindow.marker = marker;
 	        // console.log(marker);
-	        // marker.content = '<div id= "content" class="center-content row">' +
-	        //     '<div class="col-md-4">' +
-	        //     '<img id="yelpImage" class="img-responsive">' +
-	        //     '</div>' +
-	        //     '<div class="col-md-8">' +
-	        //     '<div>' +
-	        //     '<h4  id="yelpName"></h4>' +
-	        //     '<h6  id="yelpAddress1"></h6>' +
-	        //     '<h6  id="yelpAddress2"></h6>' +
-	        //     '</div>' +
-	        //     '<div>' +
-	        //     '<img id="yelpRating" class="img-responsive">' +
-	        //     '<p id="yelpText"></p>' +
-	        //     '<a id="yelpURL"></a>' +
-	        //     '</div>' +
-	        //     '</div>' +
-	        //     '</div>';
 	        yelpAPI(marker, infowindow);
 	        map.setCenter(marker.position);
 	        // console.log(marker.position);
 	        // map.panBy(0, 100);
-	        // infowindow.setContent(marker.content);
 	        infowindow.open(map, marker);
 	    }
 	};
@@ -334,15 +292,11 @@
 	            populateInfowindow(this, largeInfowindow);
 	        });
 	    });
-// EITHER FOREACH location list OR filteredLocationList = KO COMPUTED
-	    // access infowindow by clicking location list item
-		    this.openInfowindow = function($data) {
-		    	// console.log(this);
-		    	// console.log($data);
-		    	// $data.marker = marker;
-		        $data.marker.setAnimation(google.maps.Animation.DROP);
-		        populateInfowindow($data.marker, largeInfowindow);
-		    };
+
+	    this.openInfowindow = function($data) {
+	        $data.marker.setAnimation(google.maps.Animation.DROP);
+	        populateInfowindow($data.marker, largeInfowindow);
+	    };
 
 	    google.maps.event.addListener(largeInfowindow, 'closeclick', function() {
 	        largeInfowindow.opened = false;
@@ -369,12 +323,9 @@
 	};
 
 	// TODO:
-	// get marker to bounce on list view click
-	// set error handlers for google map and yelp apis
 	// set hamburger menu
 	// pretty up
 
 	// Qs:
-	// is my separation of concerns good enough?
-	// why does that darn infowindow keep popping out at loading?
-	
+	// why is the search input box spilling past its <div>?
+
