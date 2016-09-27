@@ -178,8 +178,8 @@
 	        timeout: 5000
 	    };
 
-	    $.ajax(settings)
-// 	    $.jsonp(settings)
+//	    $.ajax(settings)
+ 	    $.jsonp(settings)
 	        .done(function(results) {
 	            var yelp = {
 	                name: results.businesses[0].name,
@@ -231,8 +231,12 @@
 	        // 	            }
 
 // 	    .fail(function(parsedjson, textStatus, errorThrown) {
-	    .fail(function() {
-	        $('#errormsg').text("YELP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");
+//	    .fail(function() {
+            .fail(function(d,msg) {
+             console.log('Yelp API ', + msg);
+              infowindow.setContent('<em>Yelp API could not be reached</em>');
+           }
+//	        $('#errormsg').text("YELP API LOAD FAILURE. PLEASE TRY AGAIN LATER.");
 	    });
 	};
 
