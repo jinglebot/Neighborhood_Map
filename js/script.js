@@ -175,7 +175,7 @@
 	        data: parameters,
 	        cache: true,
 	        dataType: 'jsonp',
-	        timeout: 5000
+//	        timeout: 5000
 	    };
 
 //	    $.ajax(settings)
