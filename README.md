@@ -78,7 +78,7 @@ B. Problems encountered:
 
 C. How to access my project
 
-Visit my project: [Numismatic Guide to LA] (https://jinglebot.github.io/frontend-nanodegree-neighborhood-map/)
+Visit my project: [Numismatic Guide to LA] (https://github.com/jinglebot/Neighborhood_Map)
 
 Or:
 
