@@ -82,9 +82,9 @@ Visit my project: [Numismatic Guide to LA] (https://github.com/jinglebot/Neighbo
 
 Or:
 
-1. Download or fork the application from: [https://github.com/jinglebot/frontend-nanodegree-neighborhood-map/tree/master]
+1. Download or fork the application from: [https://github.com/jinglebot/Neighborhood_Map/tree/master]
 2. Click the *Settings* button to get to Settings Page. 
-3. Under *Github Pages*, click the _Your site is published at [https://jinglebot.github.io/frontend-nanodegree-neighborhood-map/]_ .
+3. Under *Github Pages*, click the _Your site is published at [https://jinglebot.github.io/Neighborhood_Map/]_ .
 4. Use filter box to filter both the list items and the map markers.
 5. Select a list item or map marker to open an info window describing the marker.
  
